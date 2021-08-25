@@ -16,6 +16,11 @@ RUN apt-get update \
     zip \
     unzip \
     vim \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libwebp-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql bcmath
 
 WORKDIR /var/www/html
