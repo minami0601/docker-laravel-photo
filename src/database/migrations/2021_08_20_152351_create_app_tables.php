@@ -46,10 +46,13 @@ class CreateAppTables extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('seller_id');
-            $table->unsignedBigInteger('buyer_id');
+            $table->unsignedBigInteger('buyer_id')->nullable();
             $table->unsignedBigInteger('secondary_category_id');
             $table->unsignedBigInteger('item_condition_id');
-
+            $table->string('name');
+            $table->text('description');
+            $table->unsignedInteger('price');
+            $table->string('state');
             $table->timestamps();
 
             $table->foreign('seller_id')->references('id')->on('users');
